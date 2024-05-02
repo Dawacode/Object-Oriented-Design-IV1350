@@ -4,7 +4,7 @@ import model.ItemDTO;
 import model.Sale;
 
 import java.util.List;
-/*
+/**
  * Represents an external inventory system for managing items.
  */
 public class ExternalInventorySystem {
@@ -14,7 +14,7 @@ public class ExternalInventorySystem {
     // List to simulate the external inventory system's storage of items
     private final List<ItemDTO> fakeExternalInventorySystem;
 
-    /*
+    /**
      * Constructs a new ExternalInventorySystem object with the provided list of items.
      * Initializes the inventory system by adding items to the store.
      * @param fakeExternalInventorySystem The list to store simulated items.
@@ -24,7 +24,7 @@ public class ExternalInventorySystem {
         addItemsToStore();
     }
 
-    /*
+    /**
      * Adds items to the simulated inventory store.
      * Initializes the store with predefined items.
      */
@@ -35,7 +35,7 @@ public class ExternalInventorySystem {
         fakeExternalInventorySystem.add(new ItemDTO(40, 4, 0.25, 010));
     }
 
-    /*
+    /**
      * Fetches an item from the inventory system based on its ID and quantity.
      * @param quantity The quantity of the item.
      * @param ID The ID of the item.
@@ -51,7 +51,7 @@ public class ExternalInventorySystem {
         return null;
     }
 
-    /*
+    /**
      * Checks if the provided item matches the given ID.
      * @param item The item to check.
      * @param ID The ID to match against.
@@ -61,7 +61,7 @@ public class ExternalInventorySystem {
         return item.getID() == ID;
     }
 
-    /*
+    /**
      * Updates the quantity of the provided item.
      * @param item The item to update.
      * @param quantity The new quantity of the item.

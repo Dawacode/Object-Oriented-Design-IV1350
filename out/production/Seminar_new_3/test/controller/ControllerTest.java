@@ -2,7 +2,7 @@ package controller;
 import model.ItemDTO;
 import model.ReceiptDTO;
 import model.SaleDTO;
-import org.junit.Before;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class ControllerTest {
         itemList = new ArrayList<>();
         itemList.add(itemToTest);
 
-        // we create a saleDTO with an item which we can run tests on
+        // we create a saleDTO with an item which we can run tests
         SaleDTO sale = controller.getSaleDTO();
         sale.setTime(LocalTime.MIN);
         sale.setItemList(itemList);

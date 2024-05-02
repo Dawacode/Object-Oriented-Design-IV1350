@@ -3,7 +3,7 @@ package model;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-/*
+/**
  * Represents a Data Transfer Object (DTO) for a sale.
  */
 public class SaleDTO {
@@ -20,7 +20,7 @@ public class SaleDTO {
     // The list of items included in the sale
     private List<ItemDTO> itemList;
 
-    /*
+    /**
      * Constructs a SaleDTO object with the provided sale time, total price, total VAT, and item list.
      * @param saleTime The time at which the sale occurred.
      * @param totalPrice The total price of the sale.
@@ -34,7 +34,7 @@ public class SaleDTO {
         this.itemList = itemList;
     }
 
-    /*
+    /**
      * Retrieves the sale time.
      * @return The time at which the sale occurred.
      */
@@ -42,7 +42,7 @@ public class SaleDTO {
         return this.saleTime;
     }
 
-    /*
+    /**
      * Retrieves the total price of the sale.
      * @return The total price of the sale.
      */
@@ -50,7 +50,7 @@ public class SaleDTO {
         return this.totalPrice;
     }
 
-    /*
+    /**
      * Retrieves the list of items included in the sale.
      * @return The list of items included in the sale.
      */
@@ -58,7 +58,7 @@ public class SaleDTO {
         return this.itemList;
     }
 
-    /*
+    /**
      * Retrieves the total VAT of the sale.
      * @return The total VAT of the sale.
      */
@@ -66,7 +66,7 @@ public class SaleDTO {
         return this.totalVAT;
     }
 
-    /*
+    /**
      * Sets the sale time.
      * @param time The time at which the sale occurred.
      */
@@ -74,7 +74,7 @@ public class SaleDTO {
         this.saleTime = time;
     }
 
-    /*
+    /**
      * Sets the list of items included in the sale.
      * @param itemList The list of items included in the sale.
      */
@@ -82,7 +82,7 @@ public class SaleDTO {
         this.itemList = itemList;
     }
 
-    /*
+    /**
      * Sets the total price of the sale.
      * @param newTotalPrice The new total price of the sale.
      */
@@ -90,7 +90,7 @@ public class SaleDTO {
         this.totalPrice = newTotalPrice;
     }
 
-    /*
+    /**
      * Sets the total VAT of the sale.
      * @param totalVAT The total VAT of the sale.
      */

@@ -2,7 +2,6 @@ package integration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import integration.ExternalInventorySystem;
 import model.ItemDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

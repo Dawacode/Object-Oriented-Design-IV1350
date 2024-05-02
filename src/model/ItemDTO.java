@@ -1,5 +1,5 @@
 package model;
-/*
+/**
  * Represents a Data Transfer Object (DTO) for an item.
  */
 public class ItemDTO {
@@ -16,7 +16,7 @@ public class ItemDTO {
     // The quantity of the item
     private int quantity;
 
-    /*
+    /**
      * Constructs an ItemDTO object with the provided price, ID, VAT, and quantity.
      * @param price The price of the item.
      * @param ID The ID of the item.
@@ -30,7 +30,7 @@ public class ItemDTO {
         this.quantity = quantity;
     }
 
-    /*
+    /**
      * Retrieves the price of the item.
      * @return The price of the item.
      */
@@ -38,7 +38,7 @@ public class ItemDTO {
         return this.price;
     }
 
-    /*
+    /**
      * Retrieves the ID of the item.
      * @return The ID of the item.
      */
@@ -46,7 +46,7 @@ public class ItemDTO {
         return this.ID;
     }
 
-    /*
+    /**
      * Retrieves the VAT of the item.
      * @return The VAT of the item.
      */
@@ -54,7 +54,7 @@ public class ItemDTO {
         return this.VAT;
     }
 
-    /*
+    /**
      * Retrieves the quantity of the item.
      * @return The quantity of the item.
      */
@@ -62,7 +62,7 @@ public class ItemDTO {
         return this.quantity;
     }
 
-    /*
+    /**
      * Sets the quantity of the item.
      * @param quantity The quantity of the item.
      */

@@ -25,7 +25,7 @@ public class View {
         sampleExecution();
     }
 
-    public void sampleExecution() {
+    private void sampleExecution() {
             System.out.println();
 
             System.out.println("-----------------------Start sale : ------------------------");
