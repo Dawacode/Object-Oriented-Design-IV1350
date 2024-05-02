@@ -25,7 +25,7 @@ class ControllerTest {
         itemList = new ArrayList<>();
         itemList.add(itemToTest);
 
-        // we create a saleDTO with an item which we can run tests on
+        // we create a saleDTO with an item which we can run tests
         SaleDTO sale = controller.getSaleDTO();
         sale.setTime(LocalTime.MIN);
         sale.setItemList(itemList);
