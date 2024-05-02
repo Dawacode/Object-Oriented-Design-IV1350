@@ -1,7 +1,7 @@
 package integration;
 
 import model.ItemDTO;
-import model.Sale;
+
 
 import java.util.List;
 /**
@@ -31,8 +31,8 @@ public class ExternalInventorySystem {
     private void addItemsToStore() {
         fakeExternalInventorySystem.add(new ItemDTO(10, 1, 0.25, 100));
         fakeExternalInventorySystem.add(new ItemDTO(20, 2, 0.12, 100));
-        fakeExternalInventorySystem.add(new ItemDTO(30, 3, 0.18, 100));
-        fakeExternalInventorySystem.add(new ItemDTO(40, 4, 0.25, 010));
+        fakeExternalInventorySystem.add(new ItemDTO(30, 3, 0.06, 100));
+        fakeExternalInventorySystem.add(new ItemDTO(40, 4, 0.25, 100));
     }
 
     /**

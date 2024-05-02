@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * This is a placeholder for the view. It will only contain hardcoded calls to the controller.
  */
-public class View {
+    public class View {
 
     private final Controller controller;
 
@@ -84,10 +84,14 @@ public class View {
 
             itemIterator(receipt.getItemList());
 
-            System.out.println("Total : " + receipt.getTotalPrice() +" SEK");
-            System.out.println("Paid : " + receipt.getPaid() +" SEK");
 
-            System.out.println("Change : " + receipt.getChange() +" SEK");
+            System.out.println("Total : " + receipt.getTotalPrice() +" SEK");
+
+            System.out.println("VAT : " + receipt.getTotalVAT() +" SEK");
+            System.out.println();
+            System.out.println("Cash :                        " + receipt.getPaid() +" SEK");
+
+            System.out.println("Change :                      " + receipt.getChange() +" SEK");
             System.out.println();
 
 
