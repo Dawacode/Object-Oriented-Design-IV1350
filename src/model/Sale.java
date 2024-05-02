@@ -130,11 +130,4 @@ public class Sale {
         return receiptDTO;
     }
 
-    /**
-     * Sets the SaleDTO object representing the current sale.
-     * @param saleDTO The SaleDTO object representing the current sale.
-     */
-    public void setSaleDTO(SaleDTO saleDTO) {
-        this.saleDTO = saleDTO;
-    }
 }
