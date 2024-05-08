@@ -27,12 +27,10 @@ public class Sale {
     public Sale() {
         currentTotalPrice = 0;
         currentVAT = 0.0;
-
         itemList = new ArrayList<>();
-
         externalInventorySystem = new ExternalInventorySystem(externalList = new ArrayList<>());
         externalAccountingSystem = new ExternalAccountingSystem(accountingList = new ArrayList<>());
-        saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList = new ArrayList<>(itemList));
+        saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList);
 
     }
 
@@ -40,7 +38,7 @@ public class Sale {
      * Updates the SaleDTO object with the current total price and VAT.
      */
     private void updateSale() {
-        saleDTO = new SaleDTO(saleDTO.getSaleTime(), currentTotalPrice, currentVAT, saleDTO.getItemList());
+        saleDTO = new SaleDTO(saleDTO.getSaleTime(), currentTotalPrice, currentVAT, itemList);
     }
 
     /**
@@ -75,7 +73,7 @@ public class Sale {
      * @return The ItemDTO object if found, otherwise null.
      */
     private ItemDTO findItemByID(int ID) {
-        for (ItemDTO item : saleDTO.getItemList()) {
+        for (ItemDTO item : itemList) {
             if (item.getID() == ID) {
                 return item;
             }
@@ -136,7 +134,7 @@ public class Sale {
      */
     public ReceiptDTO receivePayment(int amountPaid) {
         int change = amountPaid - saleDTO.getTotalPrice();
-        receiptDTO = new ReceiptDTO(saleDTO.getSaleTime(), currentTotalPrice, currentVAT, amountPaid, change, saleDTO.getItemList());
+        receiptDTO = new ReceiptDTO(saleDTO.getSaleTime(), currentTotalPrice, currentVAT, amountPaid, change, itemList);
         externalAccountingSystem.update(receiptDTO);
         return receiptDTO;
     }
