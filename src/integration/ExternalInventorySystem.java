@@ -67,6 +67,6 @@ public class ExternalInventorySystem {
      * @param quantity The new quantity of the item.
      */
     private void updateItemQuantity(ItemDTO item, int quantity) {
-        item.setQuantity(quantity);
+        item.quantity=quantity;
     }
 }

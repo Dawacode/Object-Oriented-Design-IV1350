@@ -28,11 +28,12 @@ public class Sale {
         currentTotalPrice = 0;
         currentVAT = 0.0;
 
+        itemList = new ArrayList<>();
+
         externalInventorySystem = new ExternalInventorySystem(externalList = new ArrayList<>());
         externalAccountingSystem = new ExternalAccountingSystem(accountingList = new ArrayList<>());
-        saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList = new ArrayList<>());
+        saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList = new ArrayList<>(itemList));
 
-        // storeTimeOfSale();
     }
 
     /**
@@ -89,9 +90,10 @@ public class Sale {
      */
     private void updateExistingItem(ItemDTO item, int quantity) {
         int newQuantity = item.getQuantity() + quantity;
-        item.setQuantity(newQuantity);
+        // Update the quantity directly without using the setter
+        item.quantity = newQuantity;
         currentTotalPrice += item.getPrice() * quantity;
-        currentVAT=item.getVAT()*item.getPrice()+currentVAT;
+        currentVAT += item.getVAT() * item.getPrice() * quantity;
         updateSale();
     }
 

@@ -43,7 +43,7 @@ import java.util.List;
 
             System.out.println();
 
-            ItemDTO scannedItem2 = controller.searchForItem(2, 1);
+            ItemDTO scannedItem2 = controller.searchForItem(1, 1);
             System.out.println("- Add 1 item with item id " + scannedItem2.getID());
             System.out.println("ID : " + scannedItem2.getID());
             System.out.println("Price : " + scannedItem2.getPrice() +" SEK");

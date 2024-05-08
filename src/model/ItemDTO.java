@@ -14,7 +14,7 @@ public class ItemDTO {
     private final double VAT;
 
     // The quantity of the item
-    private int quantity;
+    public int quantity; // ---------------------is this correct---------------------------------------
 
     /**
      * Constructs an ItemDTO object with the provided price, ID, VAT, and quantity.
@@ -62,11 +62,4 @@ public class ItemDTO {
         return this.quantity;
     }
 
-    /**
-     * Sets the quantity of the item.
-     * @param quantity The quantity of the item.
-     */
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }

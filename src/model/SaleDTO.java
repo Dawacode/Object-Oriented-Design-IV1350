@@ -66,35 +66,4 @@ public class SaleDTO {
         return this.totalVAT;
     }
 
-    /**
-     * Sets the sale time.
-     * @param time The time at which the sale occurred.
-     */
-    public void setTime(LocalTime time) {
-        this.saleTime = time;
-    }
-
-    /**
-     * Sets the list of items included in the sale.
-     * @param itemList The list of items included in the sale.
-     */
-    public void setItemList(List<ItemDTO> itemList) {
-        this.itemList = itemList;
-    }
-
-    /**
-     * Sets the total price of the sale.
-     * @param newTotalPrice The new total price of the sale.
-     */
-    public void setTotalPrice(int newTotalPrice) {
-        this.totalPrice = newTotalPrice;
-    }
-
-    /**
-     * Sets the total VAT of the sale.
-     * @param totalVAT The total VAT of the sale.
-     */
-    public void setTotalVAT(double totalVAT) {
-        this.totalVAT = totalVAT;
-    }
 }

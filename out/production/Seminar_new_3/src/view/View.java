@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * This is a placeholder for the view. It will only contain hardcoded calls to the controller.
  */
-public class View {
+    public class View {
 
     private final Controller controller;
 
@@ -25,7 +25,7 @@ public class View {
         sampleExecution();
     }
 
-    public void sampleExecution() {
+    private void sampleExecution() {
             System.out.println();
 
             System.out.println("-----------------------Start sale : ------------------------");
@@ -43,7 +43,7 @@ public class View {
 
             System.out.println();
 
-            ItemDTO scannedItem2 = controller.searchForItem(2, 1);
+            ItemDTO scannedItem2 = controller.searchForItem(1, 1);
             System.out.println("- Add 1 item with item id " + scannedItem2.getID());
             System.out.println("ID : " + scannedItem2.getID());
             System.out.println("Price : " + scannedItem2.getPrice() +" SEK");
@@ -84,10 +84,14 @@ public class View {
 
             itemIterator(receipt.getItemList());
 
-            System.out.println("Total : " + receipt.getTotalPrice() +" SEK");
-            System.out.println("Paid : " + receipt.getPaid() +" SEK");
 
-            System.out.println("Change : " + receipt.getChange() +" SEK");
+            System.out.println("Total : " + receipt.getTotalPrice() +" SEK");
+
+            System.out.println("VAT : " + receipt.getTotalVAT() +" SEK");
+            System.out.println();
+            System.out.println("Cash :                        " + receipt.getPaid() +" SEK");
+
+            System.out.println("Change :                      " + receipt.getChange() +" SEK");
             System.out.println();
 
 

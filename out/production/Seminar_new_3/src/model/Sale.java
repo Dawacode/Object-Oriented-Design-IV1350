@@ -21,28 +21,29 @@ public class Sale {
     private List<ItemDTO> externalList;
     private List<ReceiptDTO> accountingList;
 
-    /*
+    /**
      * Constructor for the Sale class.
      */
     public Sale() {
         currentTotalPrice = 0;
         currentVAT = 0.0;
 
+        itemList = new ArrayList<>();
+
         externalInventorySystem = new ExternalInventorySystem(externalList = new ArrayList<>());
         externalAccountingSystem = new ExternalAccountingSystem(accountingList = new ArrayList<>());
-        saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList = new ArrayList<>());
+        saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList = new ArrayList<>(itemList));
 
-        // storeTimeOfSale();
     }
 
-    /*
+    /**
      * Updates the SaleDTO object with the current total price and VAT.
      */
     private void updateSale() {
         saleDTO = new SaleDTO(saleDTO.getSaleTime(), currentTotalPrice, currentVAT, saleDTO.getItemList());
     }
 
-    /*
+    /**
      * Retrieves the SaleDTO object representing the current sale.
      * @return The SaleDTO object representing the current sale.
      */
@@ -50,7 +51,7 @@ public class Sale {
         return saleDTO;
     }
 
-    /*
+    /**
      * Checks if an item with the given ID and quantity exists in the sale.
      * If found, updates the quantity and calculates total price and VAT.
      * If not found, fetches the item from the external inventory system.
@@ -68,7 +69,7 @@ public class Sale {
         return item;
     }
 
-    /*
+    /**
      * Searches for an item in the sale by its ID.
      * @param ID The ID of the item to search for.
      * @return The ItemDTO object if found, otherwise null.
@@ -82,20 +83,21 @@ public class Sale {
         return null;
     }
 
-    /*
+    /**
      * Updates the quantity, total price, and VAT for an existing item in the sale.
      * @param item The ItemDTO object to update.
      * @param quantity The quantity to add to the existing quantity.
      */
     private void updateExistingItem(ItemDTO item, int quantity) {
         int newQuantity = item.getQuantity() + quantity;
-        item.setQuantity(newQuantity);
+        // Update the quantity directly without using the setter
+        item.quantity = newQuantity;
         currentTotalPrice += item.getPrice() * quantity;
-        currentVAT=item.getVAT()*item.getPrice()+currentVAT;
+        currentVAT += item.getVAT() * item.getPrice() * quantity;
         updateSale();
     }
 
-    /*
+    /**
      * Fetches an item from the external inventory system.
      * @param ID The ID of the item to fetch.
      * @param quantity The quantity of the item to fetch.
@@ -110,7 +112,7 @@ public class Sale {
         return itemFound;
     }
 
-    /*
+    /**
      * Ends the current sale and retrieves the SaleDTO object.
      * @return The SaleDTO object representing the ended sale.
      */
@@ -118,7 +120,7 @@ public class Sale {
         return this.saleDTO;
     }
 
-    /*
+    /**
      * Processes the payment for the current sale and returns the receipt.
      * @param amountPaid The amount paid by the customer.
      * @return The ReceiptDTO object representing the receipt for the sale.
@@ -130,11 +132,4 @@ public class Sale {
         return receiptDTO;
     }
 
-    /*
-     * Sets the SaleDTO object representing the current sale.
-     * @param saleDTO The SaleDTO object representing the current sale.
-     */
-    public void setSaleDTO(SaleDTO saleDTO) {
-        this.saleDTO = saleDTO;
-    }
 }
