@@ -44,8 +44,7 @@ public class ExternalInventorySystem {
     public ItemDTO fetchItem(int quantity, int ID) {
         for (ItemDTO item : fakeExternalInventorySystem) {
             if (itemMatchesID(item, ID)) {
-                updateItemQuantity(item, quantity);
-                return item;
+                return updateItemQuantity(item, quantity);
             }
         }
         return null;
@@ -66,7 +65,7 @@ public class ExternalInventorySystem {
      * @param item The item to update.
      * @param quantity The new quantity of the item.
      */
-    private void updateItemQuantity(ItemDTO item, int quantity) {
-        item.quantity=quantity;
+    private ItemDTO updateItemQuantity(ItemDTO item, int quantity) {
+        return new ItemDTO(item.getPrice(), item.getID(), item.getVAT(), quantity);
     }
 }

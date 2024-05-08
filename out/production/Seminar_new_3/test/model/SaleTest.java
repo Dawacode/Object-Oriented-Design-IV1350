@@ -20,6 +20,11 @@ class SaleTest {
     @BeforeEach
     void setUp() {
         sale = new Sale();
+        // Add items to the sale using the itemExists method
+        sale.itemExists(1, 1); // Add item with ID 1 and quantity 1
+        sale.itemExists(2, 2); // Add item with ID 2 and quantity 2
+        sale.itemExists(3, 1); // Add item with ID 3 and quantity 1
+        // You can add more items as needed
     }
 
     @Test
@@ -65,19 +70,12 @@ class SaleTest {
 
     @Test
     void testReceivePayment() {
-        // Create items and add them to the sale
-        ItemDTO item1 = new ItemDTO(10, 1, 0.2, 1);
-        ItemDTO item2 = new ItemDTO(20, 2, 0.1, 1);
-        sale.getSaleDTO().getItemList().add(item1);
-        sale.getSaleDTO().getItemList().add(item2);
-        sale.getSaleDTO().setTotalPrice(10+20); // this is due to the fact that the items in the list
-
 
         // Call receivePayment method
-        ReceiptDTO receipt = sale.receivePayment(50);
+        ReceiptDTO receipt = sale.receivePayment(100);
 
         // Check if the receipt is correctly calculated
-        assertEquals(50, receipt.getPaid(), "Amount paid should be correct");
+        assertEquals(100, receipt.getPaid(), "Amount paid should be correct");
         assertEquals(20, receipt.getChange(), "Change should be correct");
     }
 
@@ -99,7 +97,6 @@ class SaleTest {
     void receivePayment_InsufficientPayment_ReturnsNegativeChange() {
         // Call receivePayment with an amount less than the total price
         int amountPaid = 40; // Assuming the customer paid 40 but the total price is 50
-        sale.getSaleDTO().setTotalPrice(50);
         ReceiptDTO receiptDTO = sale.receivePayment(amountPaid);
 
         // Check if the change is negative

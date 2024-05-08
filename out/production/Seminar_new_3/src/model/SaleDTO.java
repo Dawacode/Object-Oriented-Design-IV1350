@@ -9,16 +9,16 @@ import java.util.List;
 public class SaleDTO {
 
     // The time at which the sale occurred
-    private LocalTime saleTime;
+    private final LocalTime saleTime;
 
     // The total price of the sale
-    private int totalPrice;
+    private final int totalPrice;
 
     // The total VAT (Value Added Tax) of the sale
-    private double totalVAT;
+    private final double totalVAT;
 
     // The list of items included in the sale
-    private List<ItemDTO> itemList;
+    private final List<ItemDTO> itemList;
 
     /**
      * Constructs a SaleDTO object with the provided sale time, total price, total VAT, and item list.

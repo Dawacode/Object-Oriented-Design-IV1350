@@ -90,10 +90,19 @@ public class Sale {
      */
     private void updateExistingItem(ItemDTO item, int quantity) {
         int newQuantity = item.getQuantity() + quantity;
-        // Update the quantity directly without using the setter
-        item.quantity = newQuantity;
-        currentTotalPrice += item.getPrice() * quantity;
-        currentVAT += item.getVAT() * item.getPrice() * quantity;
+
+        // Create a new ItemDTO object with the updated quantity
+        ItemDTO updatedItem = new ItemDTO(item.getPrice(), item.getID(), item.getVAT(), newQuantity);
+
+        // Replace the existing item in the itemList with the updated item
+        itemList.remove(item);
+        itemList.add(updatedItem);
+
+        // Update currentTotalPrice and currentVAT based on the new quantity
+        currentTotalPrice += updatedItem.getPrice() * quantity;
+        currentVAT += updatedItem.getVAT() * updatedItem.getPrice() * quantity;
+
+        // Update the SaleDTO object
         updateSale();
     }
 

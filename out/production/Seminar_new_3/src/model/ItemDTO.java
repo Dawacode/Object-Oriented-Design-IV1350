@@ -14,7 +14,7 @@ public class ItemDTO {
     private final double VAT;
 
     // The quantity of the item
-    public int quantity; // ---------------------is this correct---------------------------------------
+    private final int quantity; // ---------------------is this correct---------------------------------------
 
     /**
      * Constructs an ItemDTO object with the provided price, ID, VAT, and quantity.
