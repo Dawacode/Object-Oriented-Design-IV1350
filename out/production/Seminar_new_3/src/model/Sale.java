@@ -21,6 +21,8 @@ public class Sale {
     private List<ItemDTO> externalList;
     private List<ReceiptDTO> accountingList;
 
+    private List<SaleObserver> saleObservers =new ArrayList<>(); // --------------------- testing now
+
     /**
      * Constructor for the Sale class.
      */
@@ -129,7 +131,15 @@ public class Sale {
         int change = amountPaid - saleDTO.getTotalPrice();
         receiptDTO = new ReceiptDTO(saleDTO.getSaleTime(), currentTotalPrice, currentVAT, amountPaid, change, itemList);
         externalAccountingSystem.update(receiptDTO);
+        notifyObservers(receiptDTO.getTotalPrice());
         return receiptDTO;
     }
+
+    private void notifyObservers(int totalRevenue) {
+        for (SaleObserver observer : saleObservers) {
+            observer.updateTotalRevenue(totalRevenue);
+        }
+    }
+
 
 }

@@ -5,6 +5,7 @@ package view;
 import controller.Controller;
 import model.ItemDTO;
 import model.ReceiptDTO;
+import model.SaleObserver;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ import java.util.List;
     public View(Controller controller) {
         this.controller = controller;
         sampleExecution();
+
     }
 
     private void sampleExecution() {
@@ -125,10 +127,5 @@ import java.util.List;
             System.out.println("Item ID : " + item.getID() + "       " + item.getQuantity() + " x " + item.getPrice() +" SEK    "+ item.getPrice()* item.getQuantity() +" SEK");
         }
     }
-
-
-
-
-
 
 }
