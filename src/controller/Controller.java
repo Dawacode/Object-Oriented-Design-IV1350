@@ -62,7 +62,7 @@ public class Controller {
     }
 
     public void addSaleObserver(SaleObserver obs) {
-        saleObservers.add(obs);
+        sale.addObs(obs);
     }
 
 

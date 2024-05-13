@@ -4,6 +4,8 @@ import model.ItemDTO;
 
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
 /**
  * Represents an external inventory system for managing items.
  */
@@ -41,13 +43,17 @@ public class ExternalInventorySystem {
      * @param ID The ID of the item.
      * @return The found item if available, null otherwise.
      */
-    public ItemDTO fetchItem(int quantity, int ID) {
+    public ItemDTO fetchItem(int quantity, int ID)throws NoSuchElementException {
         for (ItemDTO item : fakeExternalInventorySystem) {
-            if (itemMatchesID(item, ID)) {
+            if(dataBaseNotRunning(ID)){
+                throw new NoSuchElementException("Database is not running");
+            }
+
+           if (itemMatchesID(item, ID)) {
                 return updateItemQuantity(item, quantity);
             }
         }
-        return null;
+        throw new NoSuchElementException("Item with ID "+ ID + " does not exist");
     }
 
     /**
@@ -58,6 +64,15 @@ public class ExternalInventorySystem {
      */
     private boolean itemMatchesID(ItemDTO item, int ID) {
         return item.getID() == ID;
+    }
+
+    /**
+     * Checks if the provided ID matches the .
+     * @param ID The ID that will illustrate that database is not running.
+     * @return True if the item's ID matches the given ID, otherwise false.
+     */
+    private boolean dataBaseNotRunning (int ID){
+        return ID==0;
     }
 
     /**

@@ -3,13 +3,15 @@
  */
 package controller;
 
-import model.ItemDTO;
-import model.ReceiptDTO;
-import model.Sale;
-import model.SaleDTO;
+import model.*;
+
+import javax.security.sasl.SaslException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
     private Sale sale;
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
      * Constructor for the Controller class.
@@ -58,4 +60,10 @@ public class Controller {
     public ReceiptDTO pay(int payment) {
         return sale.receivePayment(payment);
     }
+
+    public void addSaleObserver(SaleObserver obs) {
+        sale.addObs(obs);
+    }
+
+
 }

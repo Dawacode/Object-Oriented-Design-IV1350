@@ -36,6 +36,11 @@ public class Sale {
 
     }
 
+    public void addObs(SaleObserver ob){
+        saleObservers.add(ob);
+
+    }
+
     /**
      * Updates the SaleDTO object with the current total price and VAT.
      */
