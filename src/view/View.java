@@ -56,7 +56,8 @@ import java.util.NoSuchElementException;
             System.out.println();
         }
         catch (NoSuchElementException | DataBaseException e){
-            System.out.println("The system has a problem with finding the Item ID "+ 0 + " or the datBase is not running ");
+            System.err.println( e.getMessage());
+
         }
 
         try {
@@ -75,12 +76,13 @@ import java.util.NoSuchElementException;
             System.out.println();
         }
         catch (NoSuchElementException | DataBaseException e){
-            System.out.println("The system has a problem with finding a Item or the datBase is not running ");
+            System.err.println( e.getMessage());
+
         }
 
         try {
             int quantity3 = 2;
-            ItemDTO scannedItem3 = controller.searchForItem(3, quantity3);
+            ItemDTO scannedItem3 = controller.searchForItem(6, quantity3);
             System.out.println("- Add " + quantity3 + " item with item id " + scannedItem3.getID());
             System.out.println("ID : " + scannedItem3.getID());
             System.out.println("Price : " + scannedItem3.getPrice() + " SEK");
@@ -92,7 +94,8 @@ import java.util.NoSuchElementException;
             System.out.println("Total VAT :" + totalVAT3 + " SEK");
 
         }  catch (NoSuchElementException | DataBaseException e){
-            System.out.println("The system has a problem with finding a Item or the datBase is not running ");
+            System.err.println( e.getMessage());
+
         }
           System.out.println();
 
@@ -111,7 +114,8 @@ import java.util.NoSuchElementException;
 
         }
         catch (NoSuchElementException | DataBaseException e){
-            System.out.println("The system has a problem with finding a Item or the datBase is not running ");
+            System.err.println( e.getMessage());
+
         }
 
                  System.out.println();
