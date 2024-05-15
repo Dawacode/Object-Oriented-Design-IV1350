@@ -3,6 +3,7 @@
  */
 package model;
 
+import exceptions.DataBaseException;
 import integration.ExternalAccountingSystem;
 import integration.ExternalInventorySystem;
 import view.TotalRevenueFileOutput;
@@ -67,7 +68,7 @@ public class Sale {
      * @param quantity The quantity of the item.
      * @return The ItemDTO object representing the found or fetched item.
      */
-    public ItemDTO itemExists(int ID, int quantity) {
+    public ItemDTO itemExists(int ID, int quantity) throws DataBaseException {
         ItemDTO item = findItemByID(ID);
         if (item != null) {
             updateExistingItem(item, quantity);
@@ -113,7 +114,7 @@ public class Sale {
      * @param quantity The quantity of the item to fetch.
      * @return The ItemDTO object representing the fetched item.
      */
-    private ItemDTO fetchItemFromExternalSystem(int ID, int quantity) {
+    private ItemDTO fetchItemFromExternalSystem(int ID, int quantity) throws DataBaseException {
         ItemDTO itemFound = externalInventorySystem.fetchItem(quantity, ID);
         itemList.add(itemFound);
         currentTotalPrice += itemFound.getPrice() * quantity;

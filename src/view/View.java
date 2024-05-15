@@ -3,12 +3,14 @@
 package view;
 
 import controller.Controller;
+import exceptions.DataBaseException;
 import model.ItemDTO;
 import model.Logger;
 import model.ReceiptDTO;
 import model.SaleObserver;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * This is a placeholder for the view. It will only contain hardcoded calls to the controller.
@@ -41,7 +43,7 @@ import java.util.List;
 
         try {
             int quantity1 = 1;
-            ItemDTO scannedItem1 = controller.searchForItem(1, quantity1);
+            ItemDTO scannedItem1 = controller.searchForItem(0, quantity1);
             System.out.println("- Add " + quantity1 + " item with item id " + scannedItem1.getID());
             System.out.println("ID : " + scannedItem1.getID());
             System.out.println("Price : " + scannedItem1.getPrice() + " SEK");
@@ -53,8 +55,8 @@ import java.util.List;
             System.out.println("Total VAT :" + totalVAT1 + " SEK");
             System.out.println();
         }
-        catch (Exception e){
-
+        catch (NoSuchElementException | DataBaseException e){
+            System.out.println("The system has a problem with finding the Item ID "+ 0 + " or the datBase is not running ");
         }
 
         try {
@@ -72,9 +74,8 @@ import java.util.List;
 
             System.out.println();
         }
-        catch (Exception e){
-
-
+        catch (NoSuchElementException | DataBaseException e){
+            System.out.println("The system has a problem with finding a Item or the datBase is not running ");
         }
 
         try {
@@ -90,11 +91,10 @@ import java.util.List;
             System.out.println("Total cost ( incl VAT ):" + totalPrice3 + " SEK");
             System.out.println("Total VAT :" + totalVAT3 + " SEK");
 
-        } catch (Exception e){
-
-
+        }  catch (NoSuchElementException | DataBaseException e){
+            System.out.println("The system has a problem with finding a Item or the datBase is not running ");
         }
-                 System.out.println();
+          System.out.println();
 
         try {
             int quantity4 = 2;
@@ -110,11 +110,11 @@ import java.util.List;
             System.out.println("Total VAT :" + totalVAT4 + " SEK");
 
         }
-        catch (Exception e) {
-
+        catch (NoSuchElementException | DataBaseException e){
+            System.out.println("The system has a problem with finding a Item or the datBase is not running ");
         }
-                 System.out.println();
 
+                 System.out.println();
 
 
             System.out.println("-----------------------End sale : ------------------------");

@@ -3,6 +3,7 @@
  */
 package controller;
 
+import exceptions.DataBaseException;
 import model.*;
 import view.TotalRevenueFileOutput;
 
@@ -34,7 +35,7 @@ public class Controller {
      * @param quantity The quantity of the item.
      * @return The ItemDTO object representing the found item, or null if not found.
      */
-    public ItemDTO searchForItem(int ID, int quantity) {
+    public ItemDTO searchForItem(int ID, int quantity) throws DataBaseException {
         return sale.itemExists(ID, quantity);
     }
 

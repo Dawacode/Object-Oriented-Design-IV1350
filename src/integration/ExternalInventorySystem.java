@@ -1,5 +1,6 @@
 package integration;
 
+import exceptions.DataBaseException;
 import model.ItemDTO;
 
 
@@ -43,10 +44,10 @@ public class ExternalInventorySystem {
      * @param ID The ID of the item.
      * @return The found item if available, null otherwise.
      */
-    public ItemDTO fetchItem(int quantity, int ID)throws NoSuchElementException {
+    public ItemDTO fetchItem(int quantity, int ID) throws NoSuchElementException, DataBaseException {
         for (ItemDTO item : fakeExternalInventorySystem) {
             if(dataBaseNotRunning(ID)){
-                throw new NoSuchElementException("Database is not running");
+                throw new DataBaseException("Database is not running");
             }
 
            if (itemMatchesID(item, ID)) {

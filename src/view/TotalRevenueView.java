@@ -8,9 +8,9 @@ public class TotalRevenueView implements SaleObserver {
     private int totalRevenue=1000;
     @Override
     public void updateTotalRevenue(int totalRevenue) {
-        this.totalRevenue += totalRevenue;
         setLogger(new TotalRevenueFileOutput());
-        anyMethod(totalRevenue);
+        this.totalRevenue += totalRevenue;
+        anyMethod(this.totalRevenue);
         System.out.println("Total revenue for all sales: " + this.totalRevenue + " SEK");
     }
     private Logger logger;

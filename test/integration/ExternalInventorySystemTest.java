@@ -2,6 +2,7 @@ package integration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import exceptions.DataBaseException;
 import model.ItemDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ public class ExternalInventorySystemTest {
     }
 
     @Test
-    void testFetchItem_ItemExists() {
+    void testFetchItem_ItemExists() throws DataBaseException {
         // Add some sample items to the inventory system
         fakeExternalInventorySystem.add(new ItemDTO(10, 1, 0.25, 100));
         fakeExternalInventorySystem.add(new ItemDTO(20, 2, 0.12, 100));
@@ -34,7 +35,7 @@ public class ExternalInventorySystemTest {
     }
 
     @Test
-    void testFetchItem_ItemDoesNotExist() {
+    void testFetchItem_ItemDoesNotExist() throws DataBaseException {
         // Attempt to fetch an item that does not exist in the inventory
         ItemDTO fetchedItem = inventorySystem.fetchItem(1, 100);
 
