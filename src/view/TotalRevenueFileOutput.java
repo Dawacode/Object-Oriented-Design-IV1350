@@ -11,14 +11,14 @@ public class TotalRevenueFileOutput implements Logger {
          public TotalRevenueFileOutput() {
          try {
              logStream = new PrintWriter(
-                     new FileWriter("log.txt"), true);
+                     new FileWriter("logSale.txt"), true);
 
              } catch (IOException ioe) {
              System.out.println("CAN NOT LOG.");
              ioe.printStackTrace();
              }
          }
-
+         @Override
          public void log(String message) {
         logStream.println(message);
          }

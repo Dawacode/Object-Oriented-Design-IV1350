@@ -41,6 +41,7 @@ import java.util.NoSuchElementException;
 
         controller.startSale();
         controller.addSaleObserver(new TotalRevenueView());
+        setLogger(new LoggerException());
 
         try {
             int quantity1 = 1;
@@ -57,6 +58,7 @@ import java.util.NoSuchElementException;
             System.out.println();
         }
         catch (ItemException | DataBaseException e){
+            logMessage(e.getMessage());
             System.out.println( e.getMessage());
 
         }
@@ -77,8 +79,9 @@ import java.util.NoSuchElementException;
             System.out.println();
         }
         catch (ItemException | DataBaseException e){
-            System.out.println( e.getMessage());
+            logMessage(e.getMessage());
 
+            System.out.println( e.getMessage());
         }
 
         try {
@@ -95,7 +98,11 @@ import java.util.NoSuchElementException;
             System.out.println("Total VAT :" + totalVAT3 + " SEK");
 
         }  catch (ItemException | DataBaseException e){
+            logMessage(e.getMessage());
+
             System.out.println( e.getMessage());
+
+
         }
           System.out.println();
 
@@ -114,7 +121,10 @@ import java.util.NoSuchElementException;
 
         }
         catch (ItemException | DataBaseException e){
+            logMessage(e.getMessage());
+
             System.out.println( e.getMessage());
+
 
         }
 
@@ -154,7 +164,13 @@ import java.util.NoSuchElementException;
 
     }
 
+    public void logMessage(String msgNo) {
+        logger.log(msgNo);
+    }
 
+    public void setLogger(Logger logger) {
+        this.logger=logger;
+    }
 
     private void itemIterator(List<ItemDTO> list){
         for(ItemDTO item : list){

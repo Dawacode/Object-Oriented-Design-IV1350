@@ -1,4 +1,5 @@
 
 .idea/
-/log.txt
+/logSale.txt
+/logException.txt
 out/
