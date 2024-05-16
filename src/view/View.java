@@ -60,7 +60,6 @@ import java.util.NoSuchElementException;
         catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
             System.out.println( e.getMessage());
-
         }
 
         try {
@@ -80,7 +79,6 @@ import java.util.NoSuchElementException;
         }
         catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
-
             System.out.println( e.getMessage());
         }
 
@@ -99,10 +97,7 @@ import java.util.NoSuchElementException;
 
         }  catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
-
             System.out.println( e.getMessage());
-
-
         }
           System.out.println();
 
@@ -122,10 +117,7 @@ import java.util.NoSuchElementException;
         }
         catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
-
             System.out.println( e.getMessage());
-
-
         }
 
                  System.out.println();

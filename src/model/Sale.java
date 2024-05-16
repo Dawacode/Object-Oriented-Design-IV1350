@@ -26,11 +26,11 @@ public class Sale {
     private List<ItemDTO> externalList;
     private List<ReceiptDTO> accountingList;
 
-    private List<SaleObserver> saleObservers =new ArrayList<>(); // --------------------- testing now
-
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
      * Constructor for the Sale class.
+     * Initializes a new sale with default values and external systems.
      */
     public Sale() {
         currentTotalPrice = 0;
@@ -39,9 +39,12 @@ public class Sale {
         externalInventorySystem = new ExternalInventorySystem(externalList = new ArrayList<>());
         externalAccountingSystem = new ExternalAccountingSystem(accountingList = new ArrayList<>());
         saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList);
-
     }
 
+    /**
+     * Adds an observer to the list of sale observers.
+     * @param ob The SaleObserver to be added.
+     */
     public void addObs(SaleObserver ob){
         saleObservers.add(ob);
     }
@@ -68,6 +71,8 @@ public class Sale {
      * @param ID The ID of the item to search for.
      * @param quantity The quantity of the item.
      * @return The ItemDTO object representing the found or fetched item.
+     * @throws DataBaseException if there is an error accessing the database.
+     * @throws ItemException if there is an error related to the item.
      */
     public ItemDTO itemExists(int ID, int quantity) throws DataBaseException, ItemException {
         ItemDTO item = findItemByID(ID);
@@ -114,6 +119,8 @@ public class Sale {
      * @param ID The ID of the item to fetch.
      * @param quantity The quantity of the item to fetch.
      * @return The ItemDTO object representing the fetched item.
+     * @throws DataBaseException if there is an error accessing the database.
+     * @throws ItemException if there is an error related to the item.
      */
     private ItemDTO fetchItemFromExternalSystem(int ID, int quantity) throws DataBaseException, ItemException {
         ItemDTO itemFound = externalInventorySystem.fetchItem(quantity, ID);
@@ -146,12 +153,13 @@ public class Sale {
         return receiptDTO;
     }
 
-
+    /**
+     * Notifies all registered observers with the total revenue.
+     * @param totalRevenue The total revenue to notify the observers with.
+     */
     private void notifyObservers(int totalRevenue) {
         for (SaleObserver observer : saleObservers) {
             observer.updateTotalRevenue(totalRevenue);
         }
     }
-
-
 }

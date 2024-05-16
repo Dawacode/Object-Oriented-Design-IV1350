@@ -65,11 +65,13 @@ public class Controller {
         return sale.receivePayment(payment);
     }
 
+    /**
+     * Adds a SaleObserver to the sale to observe changes.
+     *
+     * @param obs The SaleObserver to be added.
+     */
     public void addSaleObserver(SaleObserver obs) {
         sale.addObs(obs);
-    }
-
-    public void addLogger(TotalRevenueFileOutput log ){
     }
 
 }
