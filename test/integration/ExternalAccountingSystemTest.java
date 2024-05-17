@@ -17,7 +17,7 @@ class ExternalAccountingSystemTest {
     @BeforeEach
     void setUp() {
         fakeExternalAccountingSystem = new ArrayList<>();
-        accountingSystem = new ExternalAccountingSystem(fakeExternalAccountingSystem);
+        accountingSystem = ExternalAccountingSystem.getAccount();
     }
 
 
