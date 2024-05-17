@@ -17,14 +17,12 @@ public class ExternalInventorySystemTest {
     @BeforeEach
     void setUp() {
         fakeExternalInventorySystem = new ArrayList<>();
-        inventorySystem = new ExternalInventorySystem(fakeExternalInventorySystem);
+        inventorySystem = ExternalInventorySystem.getInventory();
     }
 
     @Test
     void testFetchItem_ItemExists() throws DataBaseException, ItemException {
         // Add some sample items to the inventory system
-        fakeExternalInventorySystem.add(new ItemDTO(10, 1, 0.25, 100));
-        fakeExternalInventorySystem.add(new ItemDTO(20, 2, 0.12, 100));
 
         // Attempt to fetch an item that exists in the inventory
         ItemDTO fetchedItem = inventorySystem.fetchItem(20, 2);

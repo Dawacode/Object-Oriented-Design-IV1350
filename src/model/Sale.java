@@ -36,7 +36,7 @@ public class Sale {
         currentTotalPrice = 0;
         currentVAT = 0.0;
         itemList = new ArrayList<>();
-        externalInventorySystem = new ExternalInventorySystem(externalList = new ArrayList<>());
+        externalInventorySystem = ExternalInventorySystem.getInventory();
         externalAccountingSystem = new ExternalAccountingSystem(accountingList = new ArrayList<>());
         saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList);
     }

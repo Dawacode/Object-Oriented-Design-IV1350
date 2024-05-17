@@ -5,6 +5,7 @@ import exceptions.DataBaseException;
 import exceptions.ItemException;
 import model.ItemDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,16 +16,25 @@ public class ExternalInventorySystem {
     // List to simulate the external inventory system's storage of items
     private final List<ItemDTO> fakeExternalInventorySystem;
 
+    // Singleton instance of the ExternalInventorySystem
+    private static ExternalInventorySystem INSTANCE = new ExternalInventorySystem(new ArrayList<>());
+
     /**
      * Constructs a new ExternalInventorySystem object with the provided list of items.
      * Initializes the inventory system by adding items to the store.
      *
      * @param fakeExternalInventorySystem The list to store simulated items.
      */
-    public ExternalInventorySystem(List<ItemDTO> fakeExternalInventorySystem) {
+    private ExternalInventorySystem(List<ItemDTO> fakeExternalInventorySystem) {
         this.fakeExternalInventorySystem = fakeExternalInventorySystem;
         addItemsToStore();
     }
+
+    public static ExternalInventorySystem getInventory(){
+        return INSTANCE;
+    }
+
+
 
     /**
      * Adds items to the simulated inventory store.

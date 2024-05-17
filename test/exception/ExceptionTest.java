@@ -19,8 +19,7 @@ public class ExceptionTest {
 
     @BeforeEach
     void setUp() {
-        List<ItemDTO> fakeInventory = new ArrayList<>();
-        inventorySystem = new ExternalInventorySystem(fakeInventory);
+        inventorySystem = ExternalInventorySystem.getInventory();
     }
 
     @Test

@@ -42,6 +42,8 @@ import java.util.NoSuchElementException;
         controller.startSale();
         controller.addSaleObserver(new TotalRevenueView());
         setLogger(new LoggerException());
+        System.out.println();
+
 
         try {
             int quantity1 = 1;
@@ -60,6 +62,8 @@ import java.util.NoSuchElementException;
         catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
             System.out.println( e.getMessage());
+            System.out.println();
+
         }
 
         try {
