@@ -20,7 +20,7 @@ public class TotalRevenueFileOutput implements Logger {
     public TotalRevenueFileOutput() {
         try {
             // Initialize PrintWriter to write to "logSale.txt" with auto-flush enabled
-            logStream = new PrintWriter(new FileWriter("logSale.txt"), true);
+            logStream = new PrintWriter(new FileWriter("logSales.txt"), true);
         } catch (IOException ioe) {
             // Print error message if file cannot be opened
             System.out.println("CAN NOT LOG.");
