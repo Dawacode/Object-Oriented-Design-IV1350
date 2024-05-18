@@ -1,6 +1,3 @@
-/*
- * Sale class represents a sales transaction.
- */
 package model;
 
 import exceptions.DataBaseException;
@@ -13,6 +10,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a sales transaction. This class handles the addition of items to the sale,
+ * calculates the total price and VAT, and manages interactions with external systems
+ * like inventory and accounting.
+ */
 public class Sale {
     private ReceiptDTO receiptDTO;
     private SaleDTO saleDTO;
@@ -24,8 +26,8 @@ public class Sale {
     private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
-     * Constructor for the Sale class.
-     * Initializes a new sale with default values and external systems.
+     * Constructs a new Sale object.
+     * Initializes a new sale with default values and connects to external systems.
      */
     public Sale() {
         currentTotalPrice = 0;
@@ -38,6 +40,8 @@ public class Sale {
 
     /**
      * Adds an observer to the list of sale observers.
+     * Observers are notified of changes to the sale's total revenue.
+     *
      * @param ob The SaleObserver to be added.
      */
     public void addObs(SaleObserver ob){
@@ -46,6 +50,7 @@ public class Sale {
 
     /**
      * Updates the SaleDTO object with the current total price and VAT.
+     * This method should be called whenever the sale's details are modified.
      */
     private void updateSale() {
         saleDTO = new SaleDTO(saleDTO.getSaleTime(), currentTotalPrice, currentVAT, itemList);
@@ -53,6 +58,7 @@ public class Sale {
 
     /**
      * Retrieves the SaleDTO object representing the current sale.
+     *
      * @return The SaleDTO object representing the current sale.
      */
     public SaleDTO getSaleDTO() {
@@ -61,17 +67,18 @@ public class Sale {
 
     /**
      * Checks if an item with the given ID and quantity exists in the sale.
-     * If found, updates the quantity and calculates total price and VAT.
+     * If found, updates the quantity and recalculates the total price and VAT.
      * If not found, fetches the item from the external inventory system.
+     *
      * @param ID The ID of the item to search for.
      * @param quantity The quantity of the item.
      * @return The ItemDTO object representing the found or fetched item.
      * @throws DataBaseException if there is an error accessing the database.
-     * @throws ItemException if there is an error related to the item.
+     * @throws ItemException if the item does not exist or another item-related error occurs.
      */
     public ItemDTO itemExists(int ID, int quantity) throws DataBaseException, ItemException {
-        ItemDTO unknownItem= new ItemDTO(0,ID,0,quantity);
-        ItemDTO foundItem = new ItemMatch().matcher(unknownItem,itemList);
+        ItemDTO unknownItem = new ItemDTO(0, ID, 0, quantity);
+        ItemDTO foundItem = new ItemMatch().matcher(unknownItem, itemList);
         if (foundItem != null) {
             updateExistingItem(foundItem, quantity);
         } else {
@@ -82,6 +89,7 @@ public class Sale {
 
     /**
      * Updates the quantity, total price, and VAT for an existing item in the sale.
+     *
      * @param item The ItemDTO object to update.
      * @param quantity The quantity to add to the existing quantity.
      */
@@ -98,14 +106,15 @@ public class Sale {
 
     /**
      * Fetches an item from the external inventory system.
+     *
      * @param item The item to fetch.
      * @param quantity The quantity of the item to fetch.
      * @return The ItemDTO object representing the fetched item.
      * @throws DataBaseException if there is an error accessing the database.
-     * @throws ItemException if there is an error related to the item.
+     * @throws ItemException if the item does not exist or another item-related error occurs.
      */
     private ItemDTO fetchItemFromExternalSystem(ItemDTO item, int quantity) throws DataBaseException, ItemException {
-        ItemDTO itemFound = new SystemMatch().matcher(item,externalInventorySystem.getFakeExternalInventorySystem());
+        ItemDTO itemFound = new SystemMatch().matcher(item, externalInventorySystem.getFakeExternalInventorySystem());
         itemList.add(itemFound);
         currentTotalPrice += itemFound.getPrice() * quantity;
         currentVAT += itemFound.getVAT() * itemFound.getPrice() * quantity;
@@ -115,6 +124,7 @@ public class Sale {
 
     /**
      * Ends the current sale and retrieves the SaleDTO object.
+     *
      * @return The SaleDTO object representing the ended sale.
      */
     public SaleDTO endSale() {
@@ -123,6 +133,7 @@ public class Sale {
 
     /**
      * Processes the payment for the current sale and returns the receipt.
+     *
      * @param amountPaid The amount paid by the customer.
      * @return The ReceiptDTO object representing the receipt for the sale.
      */
@@ -136,7 +147,8 @@ public class Sale {
     }
 
     /**
-     * Notifies all registered observers with the total revenue.
+     * Notifies all registered observers with the total revenue of the sale.
+     *
      * @param totalRevenue The total revenue to notify the observers with.
      */
     private void notifyObservers(int totalRevenue) {
