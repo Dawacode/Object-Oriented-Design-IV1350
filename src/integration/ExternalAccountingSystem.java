@@ -11,18 +11,26 @@ public class ExternalAccountingSystem {
 
     // List to simulate the external accounting system's storage of receipts
     private final List<ReceiptDTO> fakeExternalAccountingSystem;
-     private static ExternalAccountingSystem INSTANCE = new ExternalAccountingSystem(new ArrayList<>());
+
+    // Singleton instance of the ExternalAccountingSystem
+    private static final ExternalAccountingSystem INSTANCE = new ExternalAccountingSystem(new ArrayList<>());
 
     /**
      * Constructs a new ExternalAccountingSystem object with the provided list of receipts.
+     * Private constructor to prevent instantiation from outside the class.
+     *
      * @param fakeExternalAccountingSystem The list to store simulated receipts.
      */
     private ExternalAccountingSystem(List<ReceiptDTO> fakeExternalAccountingSystem) {
         this.fakeExternalAccountingSystem = fakeExternalAccountingSystem;
     }
 
-
-    public static ExternalAccountingSystem getAccount(){
+    /**
+     * Provides access to the single instance of the ExternalAccountingSystem.
+     *
+     * @return The single instance of ExternalAccountingSystem.
+     */
+    public static ExternalAccountingSystem getAccount() {
         return INSTANCE;
     }
 

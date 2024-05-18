@@ -17,7 +17,7 @@ public class ExternalInventorySystem {
     private final List<ItemDTO> fakeExternalInventorySystem;
 
     // Singleton instance of the ExternalInventorySystem
-    private static ExternalInventorySystem INSTANCE = new ExternalInventorySystem(new ArrayList<>());
+    private static final ExternalInventorySystem INSTANCE = new ExternalInventorySystem(new ArrayList<>());
 
     /**
      * Constructs a new ExternalInventorySystem object with the provided list of items.

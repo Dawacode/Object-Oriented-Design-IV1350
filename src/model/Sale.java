@@ -7,8 +7,7 @@ import exceptions.DataBaseException;
 import exceptions.ItemException;
 import integration.ExternalAccountingSystem;
 import integration.ExternalInventorySystem;
-import view.TotalRevenueFileOutput;
-import view.TotalRevenueView;
+import interfaces.SaleObserver;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -21,11 +20,7 @@ public class Sale {
     private double currentVAT;
     private ExternalInventorySystem externalInventorySystem;
     private ExternalAccountingSystem externalAccountingSystem;
-
     private List<ItemDTO> itemList;
-    private List<ItemDTO> externalList;
-    private List<ReceiptDTO> accountingList;
-
     private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
@@ -75,27 +70,13 @@ public class Sale {
      * @throws ItemException if there is an error related to the item.
      */
     public ItemDTO itemExists(int ID, int quantity) throws DataBaseException, ItemException {
-        ItemDTO item = findItemByID(ID);
-        if (item != null) {
-            updateExistingItem(item, quantity);
+        ItemDTO foundItem = new FindItemList().matcher(ID,itemList);
+        if (foundItem != null) {
+            updateExistingItem(foundItem, quantity);
         } else {
-            item = fetchItemFromExternalSystem(ID, quantity);
+            foundItem = fetchItemFromExternalSystem(ID, quantity);
         }
-        return item;
-    }
-
-    /**
-     * Searches for an item in the sale by its ID.
-     * @param ID The ID of the item to search for.
-     * @return The ItemDTO object if found, otherwise null.
-     */
-    private ItemDTO findItemByID(int ID) {
-        for (ItemDTO item : itemList) {
-            if (item.getID() == ID) {
-                return item;
-            }
-        }
-        return null;
+        return foundItem;
     }
 
     /**

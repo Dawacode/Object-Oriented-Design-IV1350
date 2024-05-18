@@ -1,4 +1,4 @@
-package model;
+package interfaces;
 
 /**
  * Logger interface provides a method for logging messages.

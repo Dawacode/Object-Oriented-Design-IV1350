@@ -6,12 +6,10 @@ import controller.Controller;
 import exceptions.DataBaseException;
 import exceptions.ItemException;
 import model.ItemDTO;
-import model.Logger;
+import interfaces.Logger;
 import model.ReceiptDTO;
-import model.SaleObserver;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * This is a placeholder for the view. It will only contain hardcoded calls to the controller.

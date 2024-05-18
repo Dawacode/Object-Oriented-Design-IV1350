@@ -1,4 +1,4 @@
-package model;
+package interfaces;
 
 /**
  * SaleObserver interface provides a method to be implemented by observers

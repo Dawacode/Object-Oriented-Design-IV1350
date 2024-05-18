@@ -1,9 +1,8 @@
 package view;
 
 // Import necessary classes from the model package
-import model.Logger;
-import model.ReceiptDTO;
-import model.SaleObserver;
+import interfaces.Logger;
+import interfaces.SaleObserver;
 
 /**
  * TotalRevenueView class implements the SaleObserver interface to update and display the total revenue.

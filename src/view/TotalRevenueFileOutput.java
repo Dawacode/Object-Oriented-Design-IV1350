@@ -1,7 +1,7 @@
 package view;
 
 // Import necessary classes
-import model.Logger;
+import interfaces.Logger;
 
 import java.io.FileWriter;
 import java.io.IOException;

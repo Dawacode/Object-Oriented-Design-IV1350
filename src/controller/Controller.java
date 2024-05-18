@@ -5,10 +5,10 @@ package controller;
 
 import exceptions.DataBaseException;
 import exceptions.ItemException;
+import interfaces.SaleObserver;
 import model.*;
 import view.TotalRevenueFileOutput;
 
-import javax.security.sasl.SaslException;
 import java.util.ArrayList;
 import java.util.List;
 
