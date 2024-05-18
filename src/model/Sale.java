@@ -70,11 +70,12 @@ public class Sale {
      * @throws ItemException if there is an error related to the item.
      */
     public ItemDTO itemExists(int ID, int quantity) throws DataBaseException, ItemException {
-        ItemDTO foundItem = new FindItemList().matcher(ID,itemList);
+        ItemDTO unknownItem= new ItemDTO(0,ID,0,quantity);
+        ItemDTO foundItem = new ItemMatch().matcher(unknownItem,itemList);
         if (foundItem != null) {
             updateExistingItem(foundItem, quantity);
         } else {
-            foundItem = fetchItemFromExternalSystem(ID, quantity);
+            foundItem = fetchItemFromExternalSystem(unknownItem, quantity);
         }
         return foundItem;
     }
@@ -97,14 +98,14 @@ public class Sale {
 
     /**
      * Fetches an item from the external inventory system.
-     * @param ID The ID of the item to fetch.
+     * @param item The item to fetch.
      * @param quantity The quantity of the item to fetch.
      * @return The ItemDTO object representing the fetched item.
      * @throws DataBaseException if there is an error accessing the database.
      * @throws ItemException if there is an error related to the item.
      */
-    private ItemDTO fetchItemFromExternalSystem(int ID, int quantity) throws DataBaseException, ItemException {
-        ItemDTO itemFound = externalInventorySystem.fetchItem(quantity, ID);
+    private ItemDTO fetchItemFromExternalSystem(ItemDTO item, int quantity) throws DataBaseException, ItemException {
+        ItemDTO itemFound = new SystemMatch().matcher(item,externalInventorySystem.getFakeExternalInventorySystem());
         itemList.add(itemFound);
         currentTotalPrice += itemFound.getPrice() * quantity;
         currentVAT += itemFound.getVAT() * itemFound.getPrice() * quantity;

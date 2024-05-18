@@ -4,6 +4,7 @@ import exceptions.DataBaseException;
 import exceptions.ItemException;
 import integration.ExternalInventorySystem;
 import model.ItemDTO;
+import model.SystemMatch;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,21 +25,24 @@ public class ExceptionTest {
 
     @Test
     void testFetchItemDatabaseException() {
+        ItemDTO item=new ItemDTO(0,0,0,1);
         assertThrows(DataBaseException.class, () -> {
-            inventorySystem.fetchItem(1, 0);
+            new SystemMatch().matcher(item,inventorySystem.getFakeExternalInventorySystem());
         });
     }
 
     @Test
     void testFetchItemItemException() {
+        ItemDTO item=new ItemDTO(0,999,0,1);
         assertThrows(ItemException.class, () -> {
-            inventorySystem.fetchItem(1, 999); // assuming 999 is an ID that does not exist
+            new SystemMatch().matcher(item,inventorySystem.getFakeExternalInventorySystem()); // assuming 999 is an ID that does not exist
         });
     }
 
     @Test
     void testFetchItemSuccess() throws ItemException, DataBaseException {
-        ItemDTO item = inventorySystem.fetchItem(10, 1);
+        ItemDTO fetchItem=new ItemDTO(0,1,0,10);
+        ItemDTO item = new SystemMatch().matcher(fetchItem,inventorySystem.getFakeExternalInventorySystem());
         assertEquals(1, item.getID());
         assertEquals(10, item.getQuantity());
     }

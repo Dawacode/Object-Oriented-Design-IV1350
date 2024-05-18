@@ -4,13 +4,13 @@ import interfaces.Match;
 
 import java.util.List;
 
- public class FindItemList implements Match {
+ public class ItemMatch implements Match {
      //   FindItemList(){}
 
     @Override
-    public ItemDTO matcher(int ID, List<ItemDTO> itemList) {
+    public ItemDTO matcher(ItemDTO ID, List<ItemDTO> itemList) {
         for (ItemDTO item : itemList) {
-            if (item.getID() == ID) {
+            if (item.getID() == ID.getID()) {
                 return item;
             }
         }
