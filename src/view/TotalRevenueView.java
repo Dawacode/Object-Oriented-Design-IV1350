@@ -22,7 +22,7 @@ public class TotalRevenueView implements SaleObserver {
         // Add the passed revenue to the current total revenue
         this.totalRevenue += totalRevenue;
         // Call a method to log the updated total revenue
-        anyMethod(this.totalRevenue);
+        callLogger(this.totalRevenue);
         // Print the updated total revenue to the console
         System.out.println("Total revenue for all sales: " + this.totalRevenue + " SEK");
     }
@@ -35,7 +35,7 @@ public class TotalRevenueView implements SaleObserver {
      *
      * @param msgNo The total revenue amount to be logged.
      */
-    public void anyMethod(int msgNo) {
+    private void callLogger(int msgNo) {
         // Log the total revenue message
         logger.log("Total revenue is " + msgNo + " SEK");
     }
@@ -45,7 +45,7 @@ public class TotalRevenueView implements SaleObserver {
      *
      * @param logger The logger instance to be set.
      */
-    public void setLogger(Logger logger) {
+    private void setLogger(Logger logger) {
         this.logger = logger;
     }
 }
