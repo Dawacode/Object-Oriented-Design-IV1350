@@ -38,7 +38,7 @@ import java.util.List;
             System.out.println("-----------------------Start sale : ------------------------");
 
         controller.startSale();
-        controller.addSaleObserver(new TotalRevenueView());
+        controller.addSaleObserver(new TotalRevenueView(new TotalRevenueFileOutput()));
         setLogger(new LoggerException());
         System.out.println();
 
@@ -59,7 +59,7 @@ import java.util.List;
         }
         catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
-            System.out.println( e.getMessage());
+            System.out.println("An error occurred while processing your request. Please try again.");
             System.out.println();
 
         }
@@ -81,7 +81,7 @@ import java.util.List;
         }
         catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
-            System.out.println( e.getMessage());
+            System.out.println("An error occurred while processing your request. Please try again.");
         }
 
         try {
@@ -99,7 +99,7 @@ import java.util.List;
 
         }  catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
-            System.out.println( e.getMessage());
+            System.out.println("An error occurred while processing your request. Please try again.");
         }
           System.out.println();
 
@@ -119,7 +119,7 @@ import java.util.List;
         }
         catch (ItemException | DataBaseException e){
             logMessage(e.getMessage());
-            System.out.println( e.getMessage());
+            System.out.println( "An error occurred while processing your request. Please try again.");
         }
 
                  System.out.println();

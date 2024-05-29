@@ -10,6 +10,6 @@ public class ItemException extends Exception {
      * @param message The detailed message for the exception.
      */
     public ItemException(String message) {
-        super("The item could not be found");
+        super(message);
     }
 }

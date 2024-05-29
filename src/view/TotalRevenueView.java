@@ -9,6 +9,13 @@ import interfaces.SaleObserver;
  */
 public class TotalRevenueView implements SaleObserver {
     private int totalRevenue = 1000; // Initialize total revenue with a starting value of 1000 SEK
+    private Logger logger;
+
+
+    public TotalRevenueView(Logger logger) {
+        // Set the logger to be used for logging messages
+        this.logger = logger;
+    }
 
     /**
      * This method is called to update the total revenue when a sale occurs.
@@ -17,8 +24,6 @@ public class TotalRevenueView implements SaleObserver {
      */
     @Override
     public void updateTotalRevenue(int totalRevenue) {
-        // Set the logger to a new instance of TotalRevenueFileOutput
-        setLogger(new TotalRevenueFileOutput());
         // Add the passed revenue to the current total revenue
         this.totalRevenue += totalRevenue;
         // Call a method to log the updated total revenue
@@ -26,9 +31,6 @@ public class TotalRevenueView implements SaleObserver {
         // Print the updated total revenue to the console
         System.out.println("Total revenue for all sales: " + this.totalRevenue + " SEK");
     }
-
-    // Declare a logger to be used for logging messages
-    private Logger logger;
 
     /**
      * Logs the total revenue using the logger.

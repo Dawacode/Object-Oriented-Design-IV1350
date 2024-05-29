@@ -10,6 +10,6 @@ public class DataBaseException extends Exception {
      * @param message The detailed message for the exception.
      */
     public DataBaseException(String message) {
-        super("The Inventory is not reachable");
+        super(message);
     }
 }

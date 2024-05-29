@@ -33,9 +33,9 @@ public class ExceptionTest {
 
     @Test
     void testFetchItemItemException() {
-        ItemDTO item=new ItemDTO(0,999,0,1);
+        ItemDTO item=new ItemDTO(0,1000,0,1);
         assertThrows(ItemException.class, () -> {
-            new SystemMatch().matcher(item,inventorySystem.getFakeExternalInventorySystem()); // assuming 999 is an ID that does not exist
+            new SystemMatch().matcher(item,inventorySystem.getFakeExternalInventorySystem());
         });
     }
 
