@@ -3,15 +3,10 @@
 package view;
 
 import controller.Controller;
-import exceptions.DataBaseException;
-import exceptions.ItemException;
 import model.ItemDTO;
-import model.Logger;
 import model.ReceiptDTO;
-import model.SaleObserver;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * This is a placeholder for the view. It will only contain hardcoded calls to the controller.
@@ -20,8 +15,6 @@ import java.util.NoSuchElementException;
 
     private final Controller controller;
 
-    private TotalRevenueView totalRevenueView;
-    private Logger logger;
     /**
      * Creates a new instance that uses the specified controller.
      *
@@ -40,12 +33,9 @@ import java.util.NoSuchElementException;
             System.out.println("-----------------------Start sale : ------------------------");
 
         controller.startSale();
-        controller.addSaleObserver(new TotalRevenueView());
-        setLogger(new LoggerException());
 
-        try {
             int quantity1 = 1;
-            ItemDTO scannedItem1 = controller.searchForItem(0, quantity1);
+            ItemDTO scannedItem1 = controller.searchForItem(1, quantity1);
             System.out.println("- Add " + quantity1 + " item with item id " + scannedItem1.getID());
             System.out.println("ID : " + scannedItem1.getID());
             System.out.println("Price : " + scannedItem1.getPrice() + " SEK");
@@ -56,13 +46,9 @@ import java.util.NoSuchElementException;
             System.out.println("Total cost ( incl VAT ):" + totalPrice1 + " SEK");
             System.out.println("Total VAT :" + totalVAT1 + " SEK");
             System.out.println();
-        }
-        catch (ItemException | DataBaseException e){
-            logMessage(e.getMessage());
-            System.out.println( e.getMessage());
-        }
 
-        try {
+
+
             int quantity2 = 1;
             ItemDTO scannedItem2 = controller.searchForItem(1, quantity2);
             System.out.println("- Add " + quantity2 + " item with item id " + scannedItem2.getID());
@@ -76,15 +62,11 @@ import java.util.NoSuchElementException;
             System.out.println("Total VAT :" + totalVAT2 + " SEK");
 
             System.out.println();
-        }
-        catch (ItemException | DataBaseException e){
-            logMessage(e.getMessage());
-            System.out.println( e.getMessage());
-        }
 
-        try {
+
+
             int quantity3 = 2;
-            ItemDTO scannedItem3 = controller.searchForItem(6, quantity3);
+            ItemDTO scannedItem3 = controller.searchForItem(3, quantity3);
             System.out.println("- Add " + quantity3 + " item with item id " + scannedItem3.getID());
             System.out.println("ID : " + scannedItem3.getID());
             System.out.println("Price : " + scannedItem3.getPrice() + " SEK");
@@ -95,13 +77,10 @@ import java.util.NoSuchElementException;
             System.out.println("Total cost ( incl VAT ):" + totalPrice3 + " SEK");
             System.out.println("Total VAT :" + totalVAT3 + " SEK");
 
-        }  catch (ItemException | DataBaseException e){
-            logMessage(e.getMessage());
-            System.out.println( e.getMessage());
-        }
+
           System.out.println();
 
-        try {
+
             int quantity4 = 2;
             ItemDTO scannedItem4 = controller.searchForItem(4, quantity4);
             System.out.println("- Add " + quantity4 + " item with item id " + scannedItem4.getID());
@@ -114,11 +93,7 @@ import java.util.NoSuchElementException;
             System.out.println("Total cost ( incl VAT ):" + totalPrice4 + " SEK");
             System.out.println("Total VAT :" + totalVAT4 + " SEK");
 
-        }
-        catch (ItemException | DataBaseException e){
-            logMessage(e.getMessage());
-            System.out.println( e.getMessage());
-        }
+
 
                  System.out.println();
 
@@ -154,14 +129,6 @@ import java.util.NoSuchElementException;
             System.out.println("Change to give to the customer : " + receipt.getChange() +" SEK");
 
 
-    }
-
-    public void logMessage(String msgNo) {
-        logger.log(msgNo);
-    }
-
-    public void setLogger(Logger logger) {
-        this.logger=logger;
     }
 
     private void itemIterator(List<ItemDTO> list){

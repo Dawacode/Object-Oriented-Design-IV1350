@@ -3,12 +3,9 @@
  */
 package model;
 
-import exceptions.DataBaseException;
-import exceptions.ItemException;
+
 import integration.ExternalAccountingSystem;
 import integration.ExternalInventorySystem;
-import view.TotalRevenueFileOutput;
-import view.TotalRevenueView;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -26,7 +23,6 @@ public class Sale {
     private List<ItemDTO> externalList;
     private List<ReceiptDTO> accountingList;
 
-    private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
      * Constructor for the Sale class.
@@ -41,13 +37,6 @@ public class Sale {
         saleDTO = new SaleDTO(LocalTime.now(), 0, 0, itemList);
     }
 
-    /**
-     * Adds an observer to the list of sale observers.
-     * @param ob The SaleObserver to be added.
-     */
-    public void addObs(SaleObserver ob){
-        saleObservers.add(ob);
-    }
 
     /**
      * Updates the SaleDTO object with the current total price and VAT.
@@ -71,10 +60,9 @@ public class Sale {
      * @param ID The ID of the item to search for.
      * @param quantity The quantity of the item.
      * @return The ItemDTO object representing the found or fetched item.
-     * @throws DataBaseException if there is an error accessing the database.
-     * @throws ItemException if there is an error related to the item.
+
      */
-    public ItemDTO itemExists(int ID, int quantity) throws DataBaseException, ItemException {
+    public ItemDTO itemExists(int ID, int quantity)  {
         ItemDTO item = findItemByID(ID);
         if (item != null) {
             updateExistingItem(item, quantity);
@@ -119,10 +107,8 @@ public class Sale {
      * @param ID The ID of the item to fetch.
      * @param quantity The quantity of the item to fetch.
      * @return The ItemDTO object representing the fetched item.
-     * @throws DataBaseException if there is an error accessing the database.
-     * @throws ItemException if there is an error related to the item.
      */
-    private ItemDTO fetchItemFromExternalSystem(int ID, int quantity) throws DataBaseException, ItemException {
+    private ItemDTO fetchItemFromExternalSystem(int ID, int quantity)  {
         ItemDTO itemFound = externalInventorySystem.fetchItem(quantity, ID);
         itemList.add(itemFound);
         currentTotalPrice += itemFound.getPrice() * quantity;
@@ -148,18 +134,8 @@ public class Sale {
         int change = amountPaid - saleDTO.getTotalPrice();
         receiptDTO = new ReceiptDTO(saleDTO.getSaleTime(), currentTotalPrice, currentVAT, amountPaid, change, itemList);
         externalAccountingSystem.update(receiptDTO);
-        notifyObservers(receiptDTO.getTotalPrice());
 
         return receiptDTO;
     }
 
-    /**
-     * Notifies all registered observers with the total revenue.
-     * @param totalRevenue The total revenue to notify the observers with.
-     */
-    private void notifyObservers(int totalRevenue) {
-        for (SaleObserver observer : saleObservers) {
-            observer.updateTotalRevenue(totalRevenue);
-        }
-    }
 }

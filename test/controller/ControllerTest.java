@@ -1,6 +1,4 @@
 package controller;
-import exceptions.DataBaseException;
-import exceptions.ItemException;
 import model.ItemDTO;
 import model.ReceiptDTO;
 import model.SaleDTO;
@@ -21,7 +19,7 @@ class ControllerTest {
     private ItemDTO itemToTest;
 
     @BeforeEach
-    void setUp() throws DataBaseException, ItemException {
+    void setUp()  {
         controller = new Controller();
         controller.startSale();
         // Use the search method to add items to the SaleDTO
@@ -32,7 +30,7 @@ class ControllerTest {
     }
 
     @Test
-    public void testSearchForItem() throws DataBaseException, ItemException {
+    public void testSearchForItem()  {
 
     int expectedItemID = 1;
     int result1 = controller.searchForItem(1,1).getID();
@@ -40,7 +38,7 @@ class ControllerTest {
     }
 
     @Test
-    void searchForItem_ReturnsNonNullItemDTO() throws DataBaseException, ItemException {
+    void searchForItem_ReturnsNonNullItemDTO()  {
         ItemDTO item = controller.searchForItem(1, 1); // Example ID and quantity
 
         assertNotNull(item);

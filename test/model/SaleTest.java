@@ -1,7 +1,6 @@
 package model;
 import controller.Controller;
-import exceptions.DataBaseException;
-import exceptions.ItemException;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ class SaleTest {
     private Sale sale;
 
     @BeforeEach
-    void setUp() throws DataBaseException, ItemException {
+    void setUp() {
         sale = new Sale();
         // Add items to the sale using the itemExists method
         sale.itemExists(1, 1); // Add item with ID 1 and quantity 1
@@ -49,7 +48,7 @@ class SaleTest {
 
 
     @Test
-    void testItemExists_ItemAlreadyInSale() throws DataBaseException, ItemException {
+    void testItemExists_ItemAlreadyInSale()  {
         // Add an item to the sale list
         ItemDTO existingItem = new ItemDTO(10, 1, 0.2, 1);
         sale.getSaleDTO().getItemList().add(existingItem);
@@ -62,7 +61,7 @@ class SaleTest {
     }
 
     @Test
-    void testItemExists_ItemNotInSale() throws DataBaseException, ItemException {
+    void testItemExists_ItemNotInSale()  {
         // Call itemExists method to add a new item to the sale list
         ItemDTO newItem = sale.itemExists(2, 3);
 

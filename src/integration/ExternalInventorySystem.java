@@ -1,8 +1,6 @@
 package integration;
 
 // Import necessary classes and exceptions
-import exceptions.DataBaseException;
-import exceptions.ItemException;
 import model.ItemDTO;
 
 import java.util.List;
@@ -31,7 +29,7 @@ public class ExternalInventorySystem {
      * Initializes the store with predefined items.
      */
     private void addItemsToStore() {
-        fakeExternalInventorySystem.add(new ItemDTO(100, 1, 0.25, 100));
+        fakeExternalInventorySystem.add(new ItemDTO(10, 1, 0.25, 100));
         fakeExternalInventorySystem.add(new ItemDTO(20, 2, 0.12, 100));
         fakeExternalInventorySystem.add(new ItemDTO(30, 3, 0.06, 100));
         fakeExternalInventorySystem.add(new ItemDTO(40, 4, 0.25, 100));
@@ -43,20 +41,15 @@ public class ExternalInventorySystem {
      * @param quantity The quantity of the item.
      * @param ID The ID of the item.
      * @return The found item if available, null otherwise.
-     * @throws ItemException if the item does not exist.
-     * @throws DataBaseException if the database is not running.
-     */
-    public ItemDTO fetchItem(int quantity, int ID) throws ItemException, DataBaseException {
-        for (ItemDTO item : fakeExternalInventorySystem) {
-            if (dataBaseNotRunning(ID)) {
-                throw new DataBaseException("Database is not running");
-            }
 
+     */
+    public ItemDTO fetchItem(int quantity, int ID)  {
+        for (ItemDTO item : fakeExternalInventorySystem) {
             if (itemMatchesID(item, ID)) {
                 return updateItemQuantity(item, quantity);
             }
         }
-        throw new ItemException("Item does not exist");
+        return null;
     }
 
     /**
@@ -70,15 +63,6 @@ public class ExternalInventorySystem {
         return item.getID() == ID;
     }
 
-    /**
-     * Checks if the provided ID indicates that the database is not running.
-     *
-     * @param ID The ID that illustrates that the database is not running.
-     * @return True if the provided ID indicates the database is not running, otherwise false.
-     */
-    private boolean dataBaseNotRunning(int ID) {
-        return ID == 0;
-    }
 
     /**
      * Updates the quantity of the provided item.

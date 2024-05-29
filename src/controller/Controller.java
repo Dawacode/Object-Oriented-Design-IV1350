@@ -3,19 +3,13 @@
  */
 package controller;
 
-import exceptions.DataBaseException;
-import exceptions.ItemException;
 import model.*;
-import view.TotalRevenueFileOutput;
 
-import javax.security.sasl.SaslException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
     private Sale sale;
-    private List<SaleObserver> saleObservers = new ArrayList<>();
-    private TotalRevenueFileOutput totalRevenueFileOutput = new TotalRevenueFileOutput();
 
     /**
      * Constructor for the Controller class.
@@ -36,7 +30,7 @@ public class Controller {
      * @param quantity The quantity of the item.
      * @return The ItemDTO object representing the found item, or null if not found.
      */
-    public ItemDTO searchForItem(int ID, int quantity) throws DataBaseException, ItemException {
+    public ItemDTO searchForItem(int ID, int quantity){
         return sale.itemExists(ID, quantity);
     }
 
@@ -63,15 +57,6 @@ public class Controller {
      */
     public ReceiptDTO pay(int payment) {
         return sale.receivePayment(payment);
-    }
-
-    /**
-     * Adds a SaleObserver to the sale to observe changes.
-     *
-     * @param obs The SaleObserver to be added.
-     */
-    public void addSaleObserver(SaleObserver obs) {
-        sale.addObs(obs);
     }
 
 }
